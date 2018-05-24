@@ -22,11 +22,10 @@ if (isset($_POST['go']))
         }
         $query = mysqli_query($connect, "SELECT * FROM reg WHERE  usermail = '$userMail'");
         $num = mysqli_num_rows($query);
-        if ($num == 0 && ($error[0]) == '')
+        if ($num == 0 && ($error[0] == ''))
         {
-            $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}'),
-            '{$userPass}', '{$userMail}'");
-
+            $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) 
+            VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'");
         }
     }
 }

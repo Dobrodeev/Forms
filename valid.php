@@ -1,4 +1,5 @@
 <?php
+require_once 'ConnectDB.php';
 function clear($text)
 {
     $text = trim($text);
@@ -24,8 +25,7 @@ if (isset($_POST['go']))
         $num = mysqli_num_rows($query);
         if ($num == 0 && ($error[0]) == '')
         {
-            $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) 
-            VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'");
+            $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'");
         }
     }
 }

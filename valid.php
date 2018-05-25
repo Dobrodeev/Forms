@@ -23,9 +23,19 @@ if (isset($_POST['go']))
         }
         $query = mysqli_query($connect, "SELECT * FROM reg WHERE usermail = '$userMail'");
         $num = mysqli_num_rows($query);
+        $query = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'";
         if ($num == 0 && ($error[0]) == '')
         {
-            $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'");
+            $insert = mysqli_query($connect, $query);
         }
+        if($insert)
+            {
+                echo "<span style='color:blue;'>Данные добавлены</span>";
+            }
+        else
+            echo "<span style='color:blue;'>Данные не добавлены</span>";
+        // закрываем подключение
+        mysqli_close($insert);
+
     }
 }

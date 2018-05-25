@@ -20,9 +20,9 @@ if (isset($_POST['go']))
             $error[0] = 'style="background-color: #cc4c33";';
 //            "|^([a-z0-9_.-]{1,20})@([a-z0-9.-]{1,20}).([a-z]{2,4})|is"
         }
-        $query = mysqli_query($connect, "SELECT * FROM reg WHERE  usermail = '$userMail'");
+        $query = mysqli_query($connect, "SELECT * FROM reg WHERE usermail = '$userMail'");
         $num = mysqli_num_rows($query);
-        if ($num == 0 && ($error[0] == ''))
+        if ($num == 0 && ($error[0]) == '')
         {
             $insert = mysqli_query($connect, "INSERT INTO reg (username, userlogin, userpass, usermail) 
             VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'");

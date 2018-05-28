@@ -1,5 +1,6 @@
 <?php
-require_once 'ConnectDB.php';
+//require_once 'ConnectDB.php';
+require_once ('ConnectDB.php');
 function clear($text)
 {
     $text = trim($text);
@@ -21,20 +22,23 @@ if (isset($_POST['go']))
             $error[0] = 'style="background-color: #cc4c33";';
 //            "|^([a-z0-9_.-]{1,20})@([a-z0-9.-]{1,20}).([a-z]{2,4})|is"
         }
-        $query = mysqli_query($connect, "SELECT * FROM reg WHERE usermail = '$userMail'");
-        $num = mysqli_num_rows($query);
+//        $query = mysqli_query($connect, "SELECT * FROM reg WHERE usermail = '$userMail'");
+//        $num = mysqli_num_rows($query);
         $query2 = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}'";
-        if ($num == 0 && ($error[0]) == '')
-        {
-            $insert = mysqli_query($connect, $query2);
-        }
-        if($insert)
-            {
-                echo "<span style='color:blue;'>Данные добавлены</span>";
-            }
-        else
-            echo "<span style='color:blue;'>Данные не добавлены</span>";
-        // закрываем подключение
-        mysqli_close($insert);
+//        $query3 = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('Yriy', 'Boyco', 'boyco1960', 'boyco@meta.ua'";
+        $insert = mysqli_query($connect, $query2);
+//        $insert = mysqli_query($connect, $query3);
+//        if ($num == 0 && ($error[0]) == '')
+//        {
+//            $insert = mysqli_query($connect, $query2);
+//        }
+//        if($insert)
+//            {
+//                echo "<span style='color:blue;'>Данные добавлены</span>";
+//            }
+//        else
+//            echo "<span style='color:blue;'>Данные не добавлены</span>";
+//        // закрываем подключение
+//        mysqli_close($insert);
     }
 }

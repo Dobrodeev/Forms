@@ -29,13 +29,13 @@ $valid_types = array("gif","jpg", "png", "jpeg");
 if ($_POST['userpass'])
 {
     $userpass = md5($_POST['userpass']);
-    echo $userpass.'<br>';
+//    echo $userpass.'<br>';
     $query = "SELECT * FROM reg WHERE userpass = '$userpass'";
-    echo $query.'<br>';
+//    echo $query.'<br>';
 
     $forDB = mysqli_query($connect, $query);
     $connectQuery = mysqli_fetch_array($forDB, MYSQLI_ASSOC);
-    print_r($connectQuery);
+//    print_r($connectQuery);
     $num = mysqli_num_rows($forDB);
     if ($num == 1)
     {
@@ -99,14 +99,30 @@ if ($_POST['userpass'])
         {
             $userPass = md5($_POST['userpass']);
             $userPassNew = md5($_POST['userpassNew']);
-            // if $arr['userPassNew'] усть то нельзя
-            $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userpass'");
-            // добавить clear()
-            if ($query)
+            $queryPassword = mysqli_query($connect, "SELECT * FROM reg WHERE userpass = '$userPass'");
+            $num = mysqli_num_rows($queryPassword);
+            echo 'mysqli_num_rows(): <br>';
+            print_r($num);
+            echo '<br>';
+            if ($num != 0 )
             {
-                echo 'Обновили пароль';
+                $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
+                echo 'mysqli_query(): <br>';
+                print_r($query);
+                echo '<br>';
+                // добавить clear()
+                if ($query)
+                {
+                    echo 'Old password: '.$_POST['userpass'].'<br>';
+                    echo 'Пароль обновлен <br>';
+                    echo 'New password: '.$_POST['userpassNew'].'<br>';
+                }
             }
+            else
+                echo 'Такой пароль уже существует.';
         }
+        else
+            echo 'Заполните пустые значения';
     }
 ?>
 </body>

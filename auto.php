@@ -17,9 +17,15 @@ if (isset($_POST['go']))
         $userPass = md5($_POST['userpass']);
         $query = mysqli_query($connect, "SELECT * FROM reg WHERE userlogin = '$userLogin' AND userpass = '$userPass'");
         $num = mysqli_num_rows($query);
+        echo 'Выведем mysqli_num_rows(): <br>';
+        print_r($num).'<br>';
+        echo '<br>';
         if ($num != 0)
         {
             $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
+            echo 'Выведем mysqli_fetch_array():<br>';
+            print_r($result);
+            echo '<br>';
             if ($userLogin == $result['userlogin'] && $userPass == $result['userpass'])
             {
                 echo '<a href="mylist.php">Зайти на личную страницу</a>';

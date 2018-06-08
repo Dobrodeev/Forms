@@ -106,20 +106,27 @@ if ($_POST['userpass'])
             echo '<br>';
             if ($num != 0 )
             {
-                $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
-                echo 'mysqli_query(): <br>';
-                print_r($query);
-                echo '<br>';
-                // добавить clear()
-                if ($query)
-                {
-                    echo 'Old password: '.$_POST['userpass'].'<br>';
-                    echo 'Пароль обновлен <br>';
-                    echo 'New password: '.$_POST['userpassNew'].'<br>';
+                $queryAllPasswords = 'SELECT userpass FROM reg';
+                $q = mysqli_query($connect, $queryAllPasswords);
+                $isPasswod = mysqli_fetch_array($q, MYSQLI_ASSOC);
+                if ($userPassNew != $isPasswod['userpass']) {
+                    $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
+//                    echo 'mysqli_query(): <br>';
+//                    print_r($query);
+//                    echo '<br>';
+                    // добавить clear()
+                    if ($query)
+                    {
+                        echo 'Old password: '.$_POST['userpass'].'<br>';
+                        echo 'Пароль обновлен <br>';
+                        echo 'New password: '.$_POST['userpassNew'].'<br>';
+                    }
                 }
+                else
+                    echo 'Такой пароль уже есть.';
             }
             else
-                echo 'Такой пароль уже существует.';
+                echo 'Такого пароля не существует.';
         }
         else
             echo 'Заполните пустые значения';

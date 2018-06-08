@@ -51,7 +51,7 @@ if (isset($_POST['go']))
             }
         else
             echo "<span style='color:blue;'>Данные не добавлены</span>";
-//        // закрываем подключение
-//        mysqli_close($insert);
+        // закрываем подключение
+        mysqli_close($insert);
 
 }

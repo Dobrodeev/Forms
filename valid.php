@@ -45,12 +45,12 @@ if (isset($_POST['go']))
         {
             $result = 'Заполните пустые строки';
         }
-//        if($insert)
-//            {
-//                echo "<span style='color:blue;'>Данные добавлены</span>";
-//            }
-//        else
-//            echo "<span style='color:blue;'>Данные не добавлены</span>";
+        if($insert)
+            {
+                echo "<span style='color:blue;'>Данные добавлены</span>";
+            }
+        else
+            echo "<span style='color:blue;'>Данные не добавлены</span>";
 //        // закрываем подключение
 //        mysqli_close($insert);
 

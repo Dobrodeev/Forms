@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'ConnectDB.php';
 ?>
 <form action="#" method="post" name="auto">
@@ -22,6 +23,7 @@ if (isset($_POST['go']))
         echo '<br>';
         if ($num != 0)
         {
+            $_SESSION['login'] = $userLogin;
             $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
             echo 'Выведем mysqli_fetch_array():<br>';
             print_r($result);

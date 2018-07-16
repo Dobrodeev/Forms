@@ -1,5 +1,8 @@
 <?php
+session_start();
 require_once 'ConnectDB.php';
+echo 'Привет товарищ '.$_SESSION['name'].'<br>';
+echo 'Ваш логин '.$_SESSION['login'].'<br>';
 ?>
 <!doctype html>
 <html lang="en">

@@ -1,4 +1,7 @@
-<?php require_once 'valid.php'?>
+<?php
+session_start();
+require_once 'valid.php'
+?>
 <h3>Registration</h3>
 <form action="#" method="post" name="reg">
     <input type="text" placeholder="Your name" name="username"><br>

@@ -1,5 +1,5 @@
 <?php
-//require_once 'ConnectDB.php';
+session_start();
 require_once ('ConnectDB.php');
 function clear($text)
 {
@@ -31,6 +31,7 @@ if (isset($_POST['go']))
             $query2 = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}')";
             $insert = mysqli_query($connect, $query2);
             $result = 'Все успешно';
+            $_SESSION['name'] = $userName;
             $login = '<a href="auto.php"> перейти на авторизацию </a>';
         }
         elseif ($error != '') {

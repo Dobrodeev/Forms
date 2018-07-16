@@ -17,6 +17,7 @@ echo 'Ваш логин '.$_SESSION['login'].'<br>';
 <body>
 <script src="bootstrap4/jquery-3.3.1.js"></script>
 <script src="bootstrap4/js/bootstrap.min.js"></script>
+
 <h4>Вставить аватарку</h4>
     <form enctype="multipart/form-data" method="post">
         <input type="password" name="userpass" placeholder="password">
@@ -24,21 +25,30 @@ echo 'Ваш логин '.$_SESSION['login'].'<br>';
         <input type="submit" value="Send File" class="btn btn-primary" name="go">
     </form>
 <?php
-
-$max_image_width = 1280;
-$max_image_height = 960;
-$max_image_size = 960 * 1280;
+$login = $_SESSION['login'];
+$query = "SELECT img FROM reg WHERE '$login' = userLogin";
+$resultQuery = mysqli_query($connect, $query);
+print_r($resultQuery).'<br>';
+$img = mysqli_fetch_assoc($resultQuery);
+echo '<pre>';
+print_r($img).'<br>';
+echo '</pre>';
+echo $img['img'].'<br>';
+$im = $img['img'];
+echo "<img src='$im' alt=''>";
+//$max_image_width = 1280;
+//$max_image_height = 960;
+//$max_image_size = 960 * 1280;
+$max_image_width = 1920;
+$max_image_height = 1080;
+$max_image_size = 1920*1080;
 $valid_types = array("gif","jpg", "png", "jpeg");
 if ($_POST['userpass'])
 {
     $userpass = md5($_POST['userpass']);
-//    echo $userpass.'<br>';
     $query = "SELECT * FROM reg WHERE userpass = '$userpass'";
-//    echo $query.'<br>';
-
     $forDB = mysqli_query($connect, $query);
     $connectQuery = mysqli_fetch_array($forDB, MYSQLI_ASSOC);
-//    print_r($connectQuery);
     $num = mysqli_num_rows($forDB);
     if ($num == 1)
     {
@@ -134,6 +144,7 @@ if ($_POST['userpass'])
         else
             echo 'Заполните пустые значения';
     }
+//    session_unset();
 ?>
 </body>
 </html>

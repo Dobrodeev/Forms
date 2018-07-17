@@ -29,12 +29,7 @@ echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';
 $login = $_SESSION['login'];
 $query = "SELECT img FROM reg WHERE '$login' = userLogin";
 $resultQuery = mysqli_query($connect, $query);
-// print_r($resultQuery).'<br>';
 $img = mysqli_fetch_assoc($resultQuery);
-// echo '<pre>';
-// print_r($img).'<br>';
-// echo '</pre>';
-// echo $img['img'].'<br>';
 $im = $img['img'];
 echo "<img src='$im' alt=''>";
 //$max_image_width = 1280;
@@ -55,7 +50,6 @@ if ($_POST['userpass'])
     {
         if (isset($_FILES["userfile"]))
         {
-//            echo 1;
             if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
                 $filename=basename($_FILES['userfile']['name']);
                 $ext = substr($_FILES['userfile']['name'], 1 + strrpos($_FILES['userfile']['name'], "."));
@@ -123,11 +117,9 @@ if ($_POST['userpass'])
                 $queryAllPasswords = 'SELECT userpass FROM reg';
                 $q = mysqli_query($connect, $queryAllPasswords);
                 $isPasswod = mysqli_fetch_array($q, MYSQLI_ASSOC);
-                if ($userPassNew != $isPasswod['userpass']) {
+                if ($userPassNew != $isPasswod['userpass'])
+                {
                     $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
-//                    echo 'mysqli_query(): <br>';
-//                    print_r($query);
-//                    echo '<br>';
                     // добавить clear()
                     if ($query)
                     {

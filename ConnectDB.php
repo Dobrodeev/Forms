@@ -1,5 +1,4 @@
 <?php
-//require_once 'ConnectDB.php';
 $login = 'root';
 $password = '';
 $localhost = 'localhost';

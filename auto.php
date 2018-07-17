@@ -24,6 +24,7 @@ if (isset($_POST['go']))
         if ($num != 0)
         {
             $_SESSION['login'] = $userLogin;
+//            $_SESSION['name'] = $userName;
             $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
             echo 'Выведем mysqli_fetch_array():<br>';
             print_r($result);

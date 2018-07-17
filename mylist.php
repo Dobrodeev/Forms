@@ -24,6 +24,7 @@ echo 'Ваш логин '.$_SESSION['login'].'<br>';
         Send this file: <input name="userfile" type="file">
         <input type="submit" value="Send File" class="btn btn-primary" name="go">
     </form>
+<a href="index.php">На главную</a>
 <?php
 $login = $_SESSION['login'];
 $query = "SELECT img FROM reg WHERE '$login' = userLogin";
@@ -144,7 +145,7 @@ if ($_POST['userpass'])
         else
             echo 'Заполните пустые значения';
     }
-//    session_unset();
+    session_unset();
 ?>
 </body>
 </html>

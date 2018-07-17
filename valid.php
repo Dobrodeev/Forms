@@ -29,7 +29,8 @@ if (isset($_POST['go']))
             $query2 = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}')";
             $insert = mysqli_query($connect, $query2);
             $result = 'Все успешно';
-            $_SESSION['name'] = $userName;
+            // $_SESSION['name'] = $userName;
+            $_SESSION['login'] = $userlogin;
             $login = '<a href="auto.php"> перейти на авторизацию </a>';
         }
         elseif ($error[0] != '') {

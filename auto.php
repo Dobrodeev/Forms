@@ -24,13 +24,14 @@ if (isset($_POST['go']))
         if ($num != 0)
         {
             $_SESSION['login'] = $userLogin;
-//            $_SESSION['name'] = $userName;
             $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
             echo 'Выведем mysqli_fetch_array():<br>';
             print_r($result);
             echo '<br>';
             if ($userLogin == $result['userlogin'] && $userPass == $result['userpass'])
             {
+                $_SESSION['name'] = $result['username'];
+                echo 'name: '.$result['username'].' login: '.$result['userlogin'];
                 echo '<a href="mylist.php">Зайти на личную страницу</a>';
             }
         }

@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once 'ConnectDB.php';
-echo 'Привет товарищ '.$_SESSION['name'].'<br>';
-echo 'Ваш логин '.$_SESSION['login'].'<br>';
+echo '<h5>Привет товарищ '.$_SESSION['name'].'!<h5>';
+echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';
 ?>
 <!doctype html>
 <html lang="en">
@@ -29,12 +29,12 @@ echo 'Ваш логин '.$_SESSION['login'].'<br>';
 $login = $_SESSION['login'];
 $query = "SELECT img FROM reg WHERE '$login' = userLogin";
 $resultQuery = mysqli_query($connect, $query);
-print_r($resultQuery).'<br>';
+// print_r($resultQuery).'<br>';
 $img = mysqli_fetch_assoc($resultQuery);
-echo '<pre>';
-print_r($img).'<br>';
-echo '</pre>';
-echo $img['img'].'<br>';
+// echo '<pre>';
+// print_r($img).'<br>';
+// echo '</pre>';
+// echo $img['img'].'<br>';
 $im = $img['img'];
 echo "<img src='$im' alt=''>";
 //$max_image_width = 1280;

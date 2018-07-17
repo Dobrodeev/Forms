@@ -13,7 +13,6 @@ if (isset($_POST['go']))
 {
     if ($_POST['username'] && $_POST['userlogin'] && $_POST['userpass'] && $_POST['usermail'])
     {
-
         $userName = htmlentities(mysqli_real_escape_string($connect, clear($_POST['username'])));
         $userLogin = htmlentities(mysqli_real_escape_string($connect, clear($_POST['userlogin'])));
         $userPass = md5(clear($_POST['userpass'])); //очищаем и хешируем пароль
@@ -27,14 +26,13 @@ if (isset($_POST['go']))
         $num = mysqli_num_rows($query);
         if ($num == 0 && ($error[0]) == '')
         {
-//            echo 1;
             $query2 = "INSERT INTO reg (username, userlogin, userpass, usermail) VALUES ('{$userName}', '{$userLogin}', '{$userPass}', '{$userMail}')";
             $insert = mysqli_query($connect, $query2);
             $result = 'Все успешно';
             $_SESSION['name'] = $userName;
             $login = '<a href="auto.php"> перейти на авторизацию </a>';
         }
-        elseif ($error != '') {
+        elseif ($error[0] != '') {
             $result = 'Введите корректное мыло';
         }
             else
@@ -54,5 +52,4 @@ if (isset($_POST['go']))
             echo "<span style='color:blue;'>Данные не добавлены</span>";
         // закрываем подключение
         mysqli_close($insert);
-
 }

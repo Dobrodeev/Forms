@@ -17,7 +17,6 @@ echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';
 <body>
 <script src="bootstrap4/jquery-3.3.1.js"></script>
 <script src="bootstrap4/js/bootstrap.min.js"></script>
-
 <h4>Вставить аватарку</h4>
     <form enctype="multipart/form-data" method="post">
         <input type="password" name="userpass" placeholder="password">
@@ -86,7 +85,6 @@ if ($_POST['userpass'])
     }
 }
 ?>
-
 <h4>Изменить пароль</h4>
 <form method="post">
     <div class="form-group">
@@ -97,7 +95,6 @@ if ($_POST['userpass'])
         <label for="exampleInputPassword1">New Password</label>
         <input type="password" class="form-control" placeholder="Password" name="userpassNew">
     </div>
-
     <button type="submit" class="btn btn-default" name="go">Submit</button>
 </form>
 <?php
@@ -105,8 +102,8 @@ if ($_POST['userpass'])
     {
         if ($_POST['userpass'] && $_POST['userpassNew'])
         {
-            $userPass = md5($_POST['userpass']);
-            $userPassNew = md5($_POST['userpassNew']);
+            $userPass = md5(clear($_POST['userpass']));
+            $userPassNew = md5(clear($_POST['userpassNew']));
             $queryPassword = mysqli_query($connect, "SELECT * FROM reg WHERE userpass = '$userPass'");
             $num = mysqli_num_rows($queryPassword);
             echo 'mysqli_num_rows(): <br>';

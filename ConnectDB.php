@@ -8,3 +8,11 @@ if (!$connect)
 {
     die('Error');
 }
+function clear($text)
+{
+    $text = trim($text);
+    $text = htmlspecialchars($text);
+    $text = stripcslashes($text);
+    $text = strip_tags($text);
+    return $text;
+}

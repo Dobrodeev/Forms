@@ -14,14 +14,6 @@
 <?php
 session_start();
 require_once ('ConnectDB.php');
-function clear($text)
-{
-    $text = trim($text);
-    $text = htmlspecialchars($text);
-    $text = stripcslashes($text);
-    $text = strip_tags($text);
-    return $text;
-}
 if (isset($_POST['go']))
 {
     if ($_POST['username'] && $_POST['userlogin'] && $_POST['userpass'] && $_POST['usermail'])

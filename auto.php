@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION = array();
+session_destroy();
 require_once 'ConnectDB.php';
 ?>
 <!doctype html>
@@ -42,7 +44,7 @@ if (isset($_POST['go']))
             echo '<br>';
             if ($userLogin == $result['userlogin'] && $userPass == $result['userpass'])
             {
-                $_SESSION['name'] = $result['username'];
+//                $_SESSION['name'] = $result['username'];
 //                echo 'name: '.$result['username'].' login: '.$result['userlogin'];
                 echo '<a href="mylist.php">Зайти на личную страницу</a>';
             }

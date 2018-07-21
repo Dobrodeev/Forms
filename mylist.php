@@ -1,5 +1,14 @@
 <?php
+//$_SESSION = array();// разрегистрировали сессию
+//unset($_SESSION['name']);
+unset($_SESSION['login']);
 session_start();
+//$_SESSION['name'] &&
+if (!$_SESSION['login'])
+{
+    header("Location:auto.php");//
+    exit;
+}
 require_once 'ConnectDB.php';
 echo '<h5>Привет товарищ '.$_SESSION['name'].'!<h5>';
 echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';

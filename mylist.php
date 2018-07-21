@@ -1,17 +1,18 @@
 <?php
 //$_SESSION = array();// разрегистрировали сессию
 //unset($_SESSION['name']);
-unset($_SESSION['login']);
-session_start();
-//$_SESSION['name'] &&
-if (!$_SESSION['login'])
-{
-    header("Location:auto.php");//
-    exit;
-}
+//unset($_SESSION['login']);
+//session_start();
+////$_SESSION['name'] &&
+//if (!$_SESSION['login'])
+//{
+//    header("Location:auto.php");//
+//    exit;
+//}
 require_once 'ConnectDB.php';
-echo '<h5>Привет товарищ '.$_SESSION['name'].'!<h5>';
-echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';
+//echo '<h5>Привет товарищ '.$_SESSION['name'].'!<h5>';
+//echo '<h5>Ваш логин: '.$_SESSION['login'].'</h5>';
+echo '<h5>Ваш логин: '.$_COOKIE['test'].'</h5>';
 ?>
 <!doctype html>
 <html lang="en">
@@ -143,7 +144,7 @@ if ($_POST['userpass'])
         else
             echo 'Заполните пустые значения';
     }
-    session_unset();
+//    session_unset();
 ?>
 </body>
 </html>

@@ -28,8 +28,9 @@ if (isset($_POST['go']))
 //                echo 'name: '.$result['username'].' login: '.$result['userlogin'];
                 SetCookie('test', $userLogin, time() + 3600); // 1 час жизни Cookie
 //                echo $userLogin;
-                print_r($_COOKIE['test']);
-                echo '<a href="mylist.php">Зайти на личную страницу</a>';
+//                print_r($_COOKIE['test']);
+//                echo '<a href="mylist.php">Зайти на личную страницу</
+                header('Location: mylist.php'); // перед header не должно быть выводдов print_r echo html
             }
         }
         else

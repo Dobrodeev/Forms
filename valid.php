@@ -14,7 +14,7 @@
 <?php
 //session_start();
 require_once ('ConnectDB.php');
-if (isset($_POST['go']))
+if (isset($_POST['doSign']))
 {
     if ($_POST['username'] && $_POST['userlogin'] && $_POST['userpass'] && $_POST['usermail'])
     {
@@ -56,8 +56,9 @@ if (isset($_POST['go']))
         else
             echo "<span style='color:blue;'>Данные не добавлены</span>";
         // закрываем подключение
-        mysqli_close($insert);
+//        mysqli_close($insert);
 }
 ?>
+<a href="index.php">На главную</a>
 </body>
 </html>

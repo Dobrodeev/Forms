@@ -39,6 +39,7 @@ $login = $_SESSION['login'];
 $query = "SELECT img FROM reg WHERE '$login' = userLogin";
 $resultQuery = mysqli_query($connect, $query);
 $img = mysqli_fetch_assoc($resultQuery);
+//print_r($img);
 $im = $img['img'];
 echo "<img src='$im' alt=''>";
 //$max_image_width = 1280;
@@ -46,8 +47,8 @@ echo "<img src='$im' alt=''>";
 //$max_image_size = 960 * 1280;
 $max_image_width = 1920;
 $max_image_height = 1080;
-$max_image_size = 1920*1080;
-$valid_types = array("gif","jpg", "png", "jpeg");
+$max_image_size = 1268776.96;//1920 * 1080;
+$valid_types = array("gif", "jpg", "png", "jpeg");
 if ($_POST['userpass'])
 {
     $userpass = md5($_POST['userpass']);
@@ -66,15 +67,20 @@ if ($_POST['userpass'])
 
                 // получим массив свойств файла
                 $size = GetImageSize($_FILES['userfile']['tmp_name']);
-
+                echo '$sixe = '.$size.'<br>';
+                echo '<pre>';
+                print_r($size);
+                echo '</pre>';
                 //проверим размер фото
+                echo 'filesize()='.filesize($_FILES['userfile']['tmp_name']).' байтов<br>';
+                echo 'maxSize = '.$max_image_size.'<br>';
                 if (filesize($_FILES['userfile']['tmp_name']) > $max_image_size) {
                     echo "Error: File size > " . $max_image_size;
                 }
                 elseif(!in_array($ext, $valid_types)){
                     echo 'Error: Invalid file type.';
                 }
-                elseif(($size) && ($size[0] < $max_image_width) && ($size[1] < $max_image_height)){
+                elseif(($size) && ($size[0] <= $max_image_width) && ($size[1] <= $max_image_height)){
                     $uploaddir = 'uploads/';
                     $uploadfile = $uploaddir.$filename;
                     move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);
@@ -84,7 +90,6 @@ if ($_POST['userpass'])
                 else {
                     echo 'Error: invalid image properties.';
                 }
-
             }
             else { echo "Error: empty file.";}
         }

@@ -28,11 +28,11 @@ echo '<h5>Ваш логин: '.$_COOKIE['test'].'</h5>';
 <script src="bootstrap4/jquery-3.3.1.js"></script>
 <script src="bootstrap4/js/bootstrap.min.js"></script>
 <h4>Вставить аватарку</h4>
-    <form enctype="multipart/form-data" method="post">
-        <input type="password" name="userpass" placeholder="password">
-        Send this file: <input name="userfile" type="file">
-        <input type="submit" value="Send File" class="btn btn-primary" name="go">
-    </form>
+<form enctype="multipart/form-data" method="post">
+    <input type="password" name="userpass" placeholder="password">
+    Send this file: <input name="userfile" type="file">
+    <input type="submit" value="Send File" class="btn btn-primary" name="go">
+</form>
 <a href="index.php">На главную</a>
 <?php
 $login = $_SESSION['login'];
@@ -49,19 +49,16 @@ $max_image_width = 1920;
 $max_image_height = 1080;
 $max_image_size = 1268776.96;//1920 * 1080;
 $valid_types = array("gif", "jpg", "png", "jpeg");
-if ($_POST['userpass'])
-{
+if ($_POST['userpass']) {
     $userpass = md5($_POST['userpass']);
     $query = "SELECT * FROM reg WHERE userpass = '$userpass'";
     $forDB = mysqli_query($connect, $query);
     $connectQuery = mysqli_fetch_array($forDB, MYSQLI_ASSOC);
     $num = mysqli_num_rows($forDB);
-    if ($num == 1)
-    {
-        if (isset($_FILES["userfile"]))
-        {
+    if ($num == 1) {
+        if (isset($_FILES["userfile"])) {
             if (is_uploaded_file($_FILES['userfile']['tmp_name'])) {
-                $filename=basename($_FILES['userfile']['name']);
+                $filename = basename($_FILES['userfile']['name']);
                 $ext = substr($_FILES['userfile']['name'], 1 + strrpos($_FILES['userfile']['name'], "."));
                 // strpos --  Возвращает позицию первого вхождения подстроки
 
@@ -75,27 +72,23 @@ if ($_POST['userpass'])
                 echo 'filesize()='.filesize($_FILES['userfile']['tmp_name']).' байтов<br>';
                 echo 'maxSize = '.$max_image_size.'<br>';
                 if (filesize($_FILES['userfile']['tmp_name']) > $max_image_size) {
-                    echo "Error: File size > " . $max_image_size;
-                }
-                elseif(!in_array($ext, $valid_types)){
+                    echo "Error: File size > ".$max_image_size;
+                } elseif (!in_array($ext, $valid_types)) {
                     echo 'Error: Invalid file type.';
-                }
-                elseif(($size) && ($size[0] <= $max_image_width) && ($size[1] <= $max_image_height)){
+                } elseif (($size) && ($size[0] <= $max_image_width) && ($size[1] <= $max_image_height)) {
                     $uploaddir = 'uploads/';
                     $uploadfile = $uploaddir.$filename;
                     move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile);
                     echo "<img src='$uploadfile' alt='$filename' title='$filename' />";
                     $query = mysqli_query($connect, "UPDATE reg SET img = '$uploadfile' WHERE userpass = '$userpass'");
-                }
-                else {
+                } else {
                     echo 'Error: invalid image properties.';
                 }
+            } else {
+                echo "Error: empty file.";
             }
-            else { echo "Error: empty file.";}
         }
-    }
-    else
-    {
+    } else {
         echo 'Введите правильный пароль';
     }
 }
@@ -113,42 +106,38 @@ if ($_POST['userpass'])
     <button type="submit" class="btn btn-default" name="go">Submit</button>
 </form>
 <?php
-    if (isset($_POST['go']))
-    {
-        if ($_POST['userpass'] && $_POST['userpassNew'])
-        {
-            $userPass = md5(clear($_POST['userpass']));
-            $userPassNew = md5(clear($_POST['userpassNew']));
-            $queryPassword = mysqli_query($connect, "SELECT * FROM reg WHERE userpass = '$userPass'");
-            $num = mysqli_num_rows($queryPassword);
-            echo 'mysqli_num_rows(): <br>';
-            print_r($num);
-            echo '<br>';
-            if ($num != 0 )
-            {
-                $queryAllPasswords = 'SELECT userpass FROM reg';
-                $q = mysqli_query($connect, $queryAllPasswords);
-                $isPasswod = mysqli_fetch_array($q, MYSQLI_ASSOC);
-                if ($userPassNew != $isPasswod['userpass'])
-                {
-                    $query = mysqli_query($connect, "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
-                    // добавить clear()
-                    if ($query)
-                    {
-                        echo 'Old password: '.$_POST['userpass'].'<br>';
-                        echo 'Пароль обновлен <br>';
-                        echo 'New password: '.$_POST['userpassNew'].'<br>';
-                    }
+if (isset($_POST['go'])) {
+    if ($_POST['userpass'] && $_POST['userpassNew']) {
+        $userPass = md5(clear($_POST['userpass']));
+        $userPassNew = md5(clear($_POST['userpassNew']));
+        $queryPassword = mysqli_query($connect, "SELECT * FROM reg WHERE userpass = '$userPass'");
+        $num = mysqli_num_rows($queryPassword);
+        echo 'mysqli_num_rows(): <br>';
+        print_r($num);
+        echo '<br>';
+        if ($num != 0) {
+            $queryAllPasswords = 'SELECT userpass FROM reg';
+            $q = mysqli_query($connect, $queryAllPasswords);
+            $isPasswod = mysqli_fetch_array($q, MYSQLI_ASSOC);
+            if ($userPassNew != $isPasswod['userpass']) {
+                $query = mysqli_query($connect,
+                    "UPDATE reg SET userpass = '$userPassNew' WHERE userpass = '$userPassNew'");
+                // добавить clear()
+                if ($query) {
+                    echo 'Old password: '.$_POST['userpass'].'<br>';
+                    echo 'Пароль обновлен <br>';
+                    echo 'New password: '.$_POST['userpassNew'].'<br>';
                 }
-                else
-                    echo 'Такой пароль уже есть.';
+            } else {
+                echo 'Такой пароль уже есть.';
             }
-            else
-                echo 'Такого пароля не существует.';
+        } else {
+            echo 'Такого пароля не существует.';
         }
-        else
-            echo 'Заполните пустые значения';
+    } else {
+        echo 'Заполните пустые значения';
     }
+}
 //    session_unset();
 ?>
 </body>

@@ -1,13 +1,22 @@
 <?php
+/**
+ * @package
+ * @author Tarannic Pavel
+ * @copyright 2018
+ */
 $login = 'root';
 $password = '';
 $localhost = 'localhost';
 $db = 'regandauto';
 $connect = mysqli_connect($localhost, $login, $password, $db);
-if (!$connect)
-{
+if (!$connect) {
     die('Error');
 }
+/**
+ * фильтруем данные полученные из $_POST
+ * @param $text
+ * @return string
+ */
 function clear($text)
 {
     $text = trim($text);

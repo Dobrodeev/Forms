@@ -4,13 +4,11 @@
 //session_destroy();
 require_once 'ConnectDB.php';
 
-if (isset($_POST['doLog']))
-{
+if (isset($_POST['doLog'])) {
     /*echo '<pre>';
     print_r($_POST);
     echo '</pre>';*/
-    if ($_POST['userlogin'] && $_POST['userpass'])
-    {
+    if ($_POST['userlogin'] && $_POST['userpass']) {
         $userLogin = $_POST['userlogin'];
         $userPass = md5($_POST['userpass']);
         $query = mysqli_query($connect, "SELECT * FROM reg WHERE userlogin = '$userLogin' AND userpass = '$userPass'");
@@ -18,15 +16,13 @@ if (isset($_POST['doLog']))
 //        echo 'Выведем mysqli_num_rows(): <br>';
 //        print_r($num).'<br>';
 //        echo '<br>';
-        if ($num != 0)
-        {
+        if ($num != 0) {
 //            $_SESSION['login'] = $userLogin;
             $result = mysqli_fetch_array($query, MYSQLI_ASSOC);
 //            echo 'Выведем mysqli_fetch_array():<br>';
 //            print_r($result);
 //            echo '<br>';
-            if ($userLogin == $result['userlogin'] && $userPass == $result['userpass'])
-            {
+            if ($userLogin == $result['userlogin'] && $userPass == $result['userpass']) {
 //                $_SESSION['name'] = $result['username'];
 //                echo 'name: '.$result['username'].' login: '.$result['userlogin'];
                 SetCookie('test', $userLogin, time() + 3600); // 1 час жизни Cookie
@@ -35,14 +31,10 @@ if (isset($_POST['doLog']))
 //                echo '<a href="mylist.php">Зайти на личную страницу</
                 header('Location: mylist.php'); // перед header не должно быть выводдов print_r echo html
             }
-        }
-        else
-        {
+        } else {
             echo 'Логин или пароль не верен';
         }
-    }
-    else
-    {
+    } else {
         echo 'Заполните пустые значения';
     }
 }

@@ -1,7 +1,7 @@
 <?php
 /*session_start();
 require_once 'valid.php'
-*/?><!--
+*/ ?><!--
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,12 +20,12 @@ require_once 'valid.php'
     <input type="text" placeholder="Your name" name="username"><br>
     <input type="text" placeholder="Your login" name="userlogin"><br>
     <input type="password" placeholder="Your password" name="userpass"><br>
-    <input type="email" placeholder="Your email" name="usermail" <?php /*echo $error[0]*/?>><br>
+    <input type="email" placeholder="Your email" name="usermail" <?php /*echo $error[0]*/ ?>><br>
     <input type="submit" name="go" value="registration"><br>
     <a href="auto.php">I already registered</a>
 </form>
-<h4><?php /*echo $result*/?></h4>
-<h4><?php /*echo $login*/?></h4>
+<h4><?php /*echo $result*/ ?></h4>
+<h4><?php /*echo $login*/ ?></h4>
 <?php
 /*
  *
@@ -36,7 +36,7 @@ include 'valid.php';*/
 </body>
 </html>-->
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Animated Login and Sign up</title>
@@ -60,13 +60,15 @@ I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anyti
         <div class="user_options-text">
             <div class="user_options-unregistered">
                 <h2 class="user_unregistered-title">Don't have an account?</h2>
-                <p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+                <p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer
+                    whatever street art fap.</p>
                 <button class="user_unregistered-signup" id="signup-button">Sign up</button>
             </div>
 
             <div class="user_options-registered">
                 <h2 class="user_registered-title">Have an account?</h2>
-                <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+                <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer
+                    whatever street art fap.</p>
                 <button class="user_registered-login" id="login-button">Login</button>
             </div>
         </div>
@@ -77,13 +79,14 @@ I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anyti
                 <form class="forms_form" action="auto.php" method="post">
                     <fieldset class="forms_fieldset">
                         <div class="forms_field">
-                            <input type="text" placeholder="Login" class="forms_field-input" name="userlogin" required />
+                            <input type="text" placeholder="Login" class="forms_field-input" name="userlogin" required/>
                         </div>
                         <!--<div class="forms_field">
                             <input type="email" placeholder="Email" class="forms_field-input" name="email" required autofocus />
                         </div>-->
                         <div class="forms_field">
-                            <input type="password" placeholder="Password" name="userpass" class="forms_field-input" required />
+                            <input type="password" placeholder="Password" name="userpass" class="forms_field-input"
+                                   required/>
                         </div>
                     </fieldset>
                     <div class="forms_buttons">
@@ -97,16 +100,18 @@ I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anyti
                 <form class="forms_form" action="valid.php" method="post">
                     <fieldset class="forms_fieldset">
                         <div class="forms_field">
-                            <input type="text" placeholder="Full Name" class="forms_field-input" name="username" required />
+                            <input type="text" placeholder="Full Name" class="forms_field-input" name="username"
+                                   required/>
                         </div>
                         <div class="forms_field">
-                            <input type="text" placeholder="Login" class="forms_field-input" name="userlogin" required />
+                            <input type="text" placeholder="Login" class="forms_field-input" name="userlogin" required/>
                         </div>
                         <div class="forms_field">
-                            <input type="email" placeholder="Email" class="forms_field-input" name="usermail" required />
+                            <input type="email" placeholder="Email" class="forms_field-input" name="usermail" required/>
                         </div>
                         <div class="forms_field">
-                            <input type="password" placeholder="Password" class="forms_field-input" name="userpass" required />
+                            <input type="password" placeholder="Password" class="forms_field-input" name="userpass"
+                                   required/>
                         </div>
                     </fieldset>
                     <div class="forms_buttons">
@@ -117,7 +122,7 @@ I am @hurickkrugner on Twitter or @hk95 on GitHub. Feel free to message me anyti
         </div>
     </div>
 </section>
-<script  src="js/index.js"></script>
+<script src="js/index.js"></script>
 
 </body>
 </html>
